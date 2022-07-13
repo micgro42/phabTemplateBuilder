@@ -46,7 +46,9 @@ function copyLinkToClipboard() {
   <h1>Phabricator Template Builder</h1>
   <form>
     <div>
-      <label for="link">Link (paste existing one here to edit)</label>
+      <label for="link">
+        Link (optionally paste existing template link one here to edit)
+      </label>
       <cdx-text-input
         id="link"
         v-model="link"
@@ -59,18 +61,28 @@ function copyLinkToClipboard() {
 
     <div style="margin-top: 1em;">
       <label for="title">Title</label>
-      <cdx-text-input id="title" v-model="title" @input="rebuildLink" />
+      <cdx-text-input
+        id="title"
+        placeholder="Chore: update dependencies"
+        v-model="title"
+        @input="rebuildLink"
+      />
     </div>
     <div>
-      <label for="tags">Tags</label>
-      <cdx-text-input id="tags" v-model="tags" @input="rebuildLink" />
+      <label for="tags">Tags (comma separated)</label>
+      <cdx-text-input
+        id="tags"
+        placeholder="wikidata,codex"
+        v-model="tags"
+        @input="rebuildLink"
+      />
     </div>
     <div>
       <label for="description">Description</label>
       <textarea
-        type="textarea"
         id="description"
         class="description"
+        placeholder="As a ... I want to ... so that ..."
         v-model="description"
         @input="rebuildLink"
       ></textarea>
