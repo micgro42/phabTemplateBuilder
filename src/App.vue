@@ -9,8 +9,6 @@ const link = ref("");
 
 const base = "https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?";
 
-// https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?title=Wikidata+Ticket+Template&description=foo&tags=wikidata,accessibility
-
 function parseLink() {
   let url;
   try {
