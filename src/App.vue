@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { CdxTextInput, CdxButton } from "@wikimedia/codex";
+import { CdxTextInput, CdxButton, CdxMessage } from "@wikimedia/codex";
 
 const title = ref("");
 const tags = ref("");
 const description = ref("");
 const link = ref("");
+const hasError = ref(false);
 
 const base = "https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?";
 
@@ -13,12 +14,12 @@ function parseLink() {
   let url;
   try {
     url = new URL(link.value);
+    hasError.value = false;
   } catch (e) {
-    // TODO: show error message
-    console.error(e);
-    throw e;
+    console.debug(e);
+    hasError.value = true;
+    return;
   }
-  console.log(url);
 
   // TODO: more validation
 
@@ -29,6 +30,7 @@ function parseLink() {
 }
 
 function rebuildLink() {
+  hasError.value = false;
   const url = new URL(base);
   const params = url.searchParams;
   params.set("title", title.value);
@@ -58,6 +60,11 @@ function copyLinkToClipboard() {
       <cdx-button @click="copyLinkToClipboard">Copy</cdx-button>
       <a :href="link">Open link to phabricator</a>
     </div>
+
+    <cdx-message type="error" v-if="hasError">
+      The link you entered is not a valid phabricator link. Maybe start with the
+      inputs below.
+    </cdx-message>
 
     <div style="margin-top: 1em;">
       <label for="title">Title</label>
