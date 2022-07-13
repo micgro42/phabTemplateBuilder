@@ -45,7 +45,7 @@ function copyLinkToClipboard() {
 </script>
 
 <template>
-  <h1>Phabricator Template Builder</h1>
+  <h1>Phabricator Task Template Builder</h1>
   <form>
     <div>
       <label for="link">
