@@ -2,8 +2,8 @@
 import { ref } from "vue";
 
 const title = ref("");
-const projects = ref("");
-const msg = ref("");
+const tags = ref("");
+const description = ref("");
 const link = ref("");
 
 const base = "https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?";
@@ -25,16 +25,16 @@ function parseLink() {
 
   const params = url.searchParams;
   title.value = params.get("title") || "";
-  projects.value = params.get("tags") || "";
-  msg.value = params.get("description") || "";
+  tags.value = params.get("tags") || "";
+  description.value = params.get("description") || "";
 }
 
 function rebuildLink() {
   const url = new URL(base);
   const params = url.searchParams;
   params.set("title", title.value);
-  params.set("tags", projects.value);
-  params.set("description", msg.value);
+  params.set("tags", tags.value);
+  params.set("description", description.value);
   link.value = url.href;
 }
 </script>
@@ -53,15 +53,15 @@ function rebuildLink() {
       <input id="title" v-model="title" @input="rebuildLink" />
     </div>
     <div>
-      <label for="projects">Projects</label>
-      <input id="projects" v-model="projects" @input="rebuildLink" />
+      <label for="tags">Tags</label>
+      <input id="tags" v-model="tags" @input="rebuildLink" />
     </div>
     <div>
       <label for="description">Description</label>
       <textarea
         id="description"
         class="description"
-        v-model="msg"
+        v-model="description"
         @input="rebuildLink"
       ></textarea>
     </div>
