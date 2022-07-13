@@ -37,6 +37,10 @@ function rebuildLink() {
   params.set("description", description.value);
   link.value = url.href;
 }
+
+function copyLinkToClipboard() {
+  navigator.clipboard.writeText(link.value);
+}
 </script>
 
 <template>
@@ -45,6 +49,7 @@ function rebuildLink() {
     <div>
       <label for="link">Link (paste existing one here to edit)</label>
       <input id="link" v-model="link" :placeholder="base" @input="parseLink" />
+      <button type="button" @click="copyLinkToClipboard">Copy</button>
       <a :href="link">Open link in phabricator</a>
     </div>
 
