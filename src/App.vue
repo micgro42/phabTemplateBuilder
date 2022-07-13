@@ -42,6 +42,15 @@ function rebuildLink() {
 function copyLinkToClipboard() {
   navigator.clipboard.writeText(link.value);
 }
+
+function buildTime(): string | false {
+  const buildDate = new Date();
+  if (!process.env.VUE_APP_BUILD_TIME) {
+    return false;
+  }
+  buildDate.setTime(parseInt(process.env.VUE_APP_BUILD_TIME));
+  return buildDate.toUTCString();
+}
 </script>
 
 <template>
@@ -97,6 +106,16 @@ function copyLinkToClipboard() {
       ></textarea>
     </div>
   </form>
+  <hr />
+  <footer>
+    <a
+      href="https://github.com/micgro42/phabTemplateBuilder"
+      target="_blank"
+    >Source</a>
+    <span>
+      Last built at: <time>{{ buildTime() }}</time>
+    </span>
+  </footer>
 </template>
 
 <style>
