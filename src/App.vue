@@ -58,7 +58,9 @@ function copyLinkToClipboard() {
         @input="parseLink"
       />
       <cdx-button @click="copyLinkToClipboard">Copy</cdx-button>
-      <a :href="link">Open link to phabricator</a>
+      <a :href="link" v-if="link && !hasError" target="_blank">
+        Open link to phabricator
+      </a>
     </div>
 
     <cdx-message type="error" v-if="hasError">
