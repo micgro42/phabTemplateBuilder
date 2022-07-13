@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { CdxTextInput, CdxButton } from "@wikimedia/codex";
 
 const title = ref("");
 const tags = ref("");
@@ -48,22 +49,28 @@ function copyLinkToClipboard() {
   <form>
     <div>
       <label for="link">Link (paste existing one here to edit)</label>
-      <input id="link" v-model="link" :placeholder="base" @input="parseLink" />
-      <button type="button" @click="copyLinkToClipboard">Copy</button>
-      <a :href="link">Open link in phabricator</a>
+      <cdx-text-input
+        id="link"
+        v-model="link"
+        :placeholder="base"
+        @input="parseLink"
+      />
+      <cdx-button @click="copyLinkToClipboard">Copy</cdx-button>
+      <a :href="link">Open link to phabricator</a>
     </div>
 
-    <div>
+    <div style="margin-top: 1em;">
       <label for="title">Title</label>
-      <input id="title" v-model="title" @input="rebuildLink" />
+      <cdx-text-input id="title" v-model="title" @input="rebuildLink" />
     </div>
     <div>
       <label for="tags">Tags</label>
-      <input id="tags" v-model="tags" @input="rebuildLink" />
+      <cdx-text-input id="tags" v-model="tags" @input="rebuildLink" />
     </div>
     <div>
       <label for="description">Description</label>
       <textarea
+        type="textarea"
         id="description"
         class="description"
         v-model="description"
