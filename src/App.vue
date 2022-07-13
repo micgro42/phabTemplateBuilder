@@ -55,7 +55,7 @@ function buildTime(): string | false {
 
 <template>
   <h1>Phabricator Task Template Builder</h1>
-  <form>
+  <form @submit.prevent>
     <div>
       <label for="link">
         Link (optionally paste existing template link here to edit)
