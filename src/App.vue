@@ -81,6 +81,9 @@ function copyLinkToClipboard() {
 </template>
 
 <style>
+/* TODO: this import should not be needed */
+@import "../node_modules/@wikimedia/codex/dist/codex.style.css";
+
 .description {
   width: 100%;
   height: 50em;
