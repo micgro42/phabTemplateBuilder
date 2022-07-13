@@ -66,7 +66,7 @@ function buildTime(): string | false {
         :placeholder="base"
         @input="parseLink"
       />
-      <cdx-button @click="copyLinkToClipboard">Copy</cdx-button>
+      <cdx-button @click="copyLinkToClipboard" v-if="link && !hasError">Copy</cdx-button>
       <a :href="link" v-if="link && !hasError" target="_blank">
         Open link to phabricator
       </a>
