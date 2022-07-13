@@ -49,7 +49,7 @@ function copyLinkToClipboard() {
   <form>
     <div>
       <label for="link">
-        Link (optionally paste existing template link one here to edit)
+        Link (optionally paste existing template link here to edit)
       </label>
       <cdx-text-input
         id="link"
@@ -68,7 +68,7 @@ function copyLinkToClipboard() {
       inputs below.
     </cdx-message>
 
-    <div style="margin-top: 1em;">
+    <div style="margin-top: 1em">
       <label for="title">Title</label>
       <cdx-text-input
         id="title"
